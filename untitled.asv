@@ -1,0 +1,130 @@
+clc; clear all ;close all;
+
+%%
+
+%Torque = Frorce * radius
+
+
+%%
+
+
+
+N = 2; % number of magnet poles on rotor
+
+theta_elec = N/2 * theta_mech;
+
+
+%% 
+% since Magnts always have two poles 
+Np = N/2;
+
+theta_elec = Np * theta_mech;
+
+% differentiate above 
+w_elec = Np * w_mech;
+f_mech = w_mech/(2 * pi);
+f_elec = Np * f_mech;
+
+%% Motor Size
+
+% T = torque 
+% k = constant 
+% D = rotor diameter
+% L = axial rotor length ( the height) 
+
+T = k * (D^2) *L;
+
+%% Magnetic Circuit concepts
+% B = flux density
+% H = field intensity
+% u = permeability 
+
+u = 4 * pi * 1e-7;  % permeability of free space
+
+
+
+
+B = uH;
+
+%% grade to magnet 
+
+grade = 'N52';
+data = readtable('Chinese Standard.xlsx');
+Magnet_grades = data.Material;
+
+if ~ismember(grade, Magnet_grades)
+    fprintf('Invalid grade: %s\n', grade);
+else
+    
+
+end
+
+%% Modelling Air Gap
+% model the permeance or reluactance of an air gap 
+%
+
+ag_model = '1';
+u = 4*pi*10^-7;
+w = % width
+A = % input any corss area
+g = % air gap length
+
+if ag_model == '1'
+    P_ga = u*A/g;
+elseif ag_model == '2'
+    P_ga = u*(w*(l+2g))/g;
+elseif ag_model == '3':
+    func = @(x) u*L/(g+pi*x);
+    Xmax = ; % no more than 10g
+    P_ga = integral(func,0,Xmax);
+end
+
+%% Modelling slot
+% model the pereance of reluactance of an air gap with slot
+%
+
+
+
+s_model = '1';
+effective_gap_model = '1'
+if s_model  == '1'
+    Pg = u * A/g;
+elseif s_model == '2'
+    L =  % this is the depth
+    ws =  % slot gap
+    Pg = u*(A-ws*L)/g;
+
+elseif s_model == '3'
+    
+    K_c1 = ( 1 - 1/(ts * (5 * g/ws +1)/ws))^(-1);
+    K_c2 = (1 - 2*ws/(pi*ts)*(artan(ws/(2*g) - g/ws* ln(1+ 1/4 * (ws/g)^2)))^(-1));    
+   
+    ge = Kc*g;
+    Pg = u * A /ge;
+end
+
+
+
+%% Electrical and Mechanical Relationships
+
+
+% Assumption :
+% copper used is enamel copper winding wirse (329 ohms per 1km)
+% resistance of stator 
+
+
+
+I = % current flowing through 
+N = % winding
+R = % reluctance seen by the MMF source
+
+phi = N*I/R;
+
+% Flux linkage denoted by Lambda
+lambda = phi * N ; %
+% or = N^2 / R * i  subbbing in the Ohms' law equation and flux linkage
+% equation
+
+
+R = P^(-1); % where P is the inductance
+3
