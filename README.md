@@ -38,8 +38,8 @@ model_blpmm/
 
 Reading progress from the Avislab PDF:
 
-- **Pages read:** `0 / 411`
-- **Page per day** `30 pages`
+- **Pages read:** `32 / 411`
+- **Page per day** `3x0 pages`
 
 ---
 
