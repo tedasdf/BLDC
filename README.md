@@ -38,7 +38,7 @@ model_blpmm/
 
 Reading progress from the Avislab PDF:
 
-- **Pages read:** `117 / 411`
+- **Pages read:** `134 / 411`
 - **Page per day** `3x0 pages`
 
 ---
@@ -54,3 +54,7 @@ Reading progress from the Avislab PDF:
 ## 🗒️ Notes
 
 This is a study-focused implementation. Accuracy and results should be validated through FEM tools or experimental data for practical applications.
+
+
+
+## Stator Dimension
